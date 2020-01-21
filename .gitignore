@@ -74,3 +74,6 @@ day_one/packages/Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.
 day_one/packages/Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1/license (MIT).txt
 day_one/packages/Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1/Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.nupkg
 day_one/packages/Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1/ThirdPartyNotices.txt
+day_one/day_one/Debug/day_one.vcxproj.FileListAbsolute.txt
+day_one/day_one_implementation/Debug/day_one_implementation.vcxproj.FileListAbsolute.txt
+day_one/day_one_implementation/Debug/vc142.idb
