@@ -82,3 +82,4 @@ day_one/day_one_implementation/Debug/vc142.idb
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+*.pyc

@@ -1,12 +1,6 @@
 import unittest
 
-def freq_sum(freqs) :
-    sum = 0
-
-    for f in freqs:
-        sum += f
-
-    return sum
+from freq_sum import freq_sum
 
 class MyTestCase(unittest.TestCase):
     def test_two_vals(self):
