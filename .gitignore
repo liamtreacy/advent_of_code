@@ -77,3 +77,8 @@ day_one/packages/Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.
 day_one/day_one/Debug/day_one.vcxproj.FileListAbsolute.txt
 day_one/day_one_implementation/Debug/day_one_implementation.vcxproj.FileListAbsolute.txt
 day_one/day_one_implementation/Debug/vc142.idb
+.idea/Advent_of_code_2018.iml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
