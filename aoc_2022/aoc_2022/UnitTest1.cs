@@ -62,4 +62,21 @@ public class Tests
         
         Assert.AreEqual(2, GetPositonLargestCalorieCount(elves));
     }
+
+    [Test]
+    public void Not_A_Unit_Test_But_The_Real_Day_One()
+    {
+        // Get input
+        var input_string = File.ReadAllText(
+            $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
+            $"input.txt");
+        
+        // Get elves
+        var elves = ParseStringForElves(input_string);
+        
+        // Get largest calorie count
+        var pos = GetPositonLargestCalorieCount(elves);
+
+        Assert.AreEqual(70613, elves[pos].Calories);
+    }
 }
