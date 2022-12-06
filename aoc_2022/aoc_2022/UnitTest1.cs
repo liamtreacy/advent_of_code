@@ -40,6 +40,19 @@ public class Tests
         return elves.IndexOf(elves.OrderByDescending(
             i => i.Calories).First());
     }
+    
+    int CaloriesOfTopNElves(int n, List<Elf> elves)
+    {
+        var top_n = elves.OrderByDescending(t => t.Calories).Take(n);
+        var total_calories = 0;
+
+        foreach (var elf in top_n)
+        {
+            total_calories += elf.Calories;
+        }
+
+        return total_calories;
+    }
 
     [Test]
     public void Parse_Input()
@@ -78,5 +91,21 @@ public class Tests
         var pos = GetPositonLargestCalorieCount(elves);
 
         Assert.AreEqual(70613, elves[pos].Calories);
+    }
+    
+    [Test]
+    public void Not_A_Unit_Test_But_The_Real_Day_Two()
+    {
+        // Get input
+        var input_string = File.ReadAllText(
+            $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
+            $"input.txt");
+        
+        // Get elves
+        var elves = ParseStringForElves(input_string);
+        
+        // Get top three calorie count
+
+        Assert.AreEqual(205805, CaloriesOfTopNElves(3, elves));
     }
 }
