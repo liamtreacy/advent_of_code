@@ -14,7 +14,25 @@ public class Tests
 
     List<Elf> ParseStringForElves(String s)
     {
-        return null;
+        string[] tokens = s.Split('\n');
+
+        List<Elf> elves = new List<Elf>();
+        int running_calorie_total = 0;
+
+        foreach (var t in tokens)
+        {
+            if (!String.IsNullOrEmpty(t))
+            {
+                running_calorie_total += Int32.Parse(t);
+            }
+            else
+            {
+                elves.Add(new Elf{Calories = running_calorie_total});
+                running_calorie_total = 0;
+            }
+        }
+
+        return elves;
     }
 
     [Test]
@@ -24,6 +42,6 @@ public class Tests
                     "8000\n9000\n\n10000";
 
         var elves = ParseStringForElves(input);
-        Assert.Equals(elves[0].Calories, 6000);
+        Assert.That(6000, Is.EqualTo(elves[0].Calories));
     }
 }
