@@ -1,3 +1,4 @@
+using System.Collections;
 using aoc_2022;
 using NUnit.Framework;
 
@@ -48,25 +49,18 @@ public class DayTwoTest
         if (p1 == p2)
             return Outcome.Draw;
 
-        if (p1 == PlayerMove.Rock && p2 == PlayerMove.Scissors)
-            return Outcome.Win;
+        var result = new List<(PlayerMove, PlayerMove, Outcome)>();
+        result.Add((PlayerMove.Rock, PlayerMove.Scissors, Outcome.Win));
+        result.Add((PlayerMove.Rock, PlayerMove.Paper, Outcome.Loss));
 
-        if (p1 == PlayerMove.Rock && p2 == PlayerMove.Paper)
-            return Outcome.Loss;
-
-        if (p1 == PlayerMove.Paper && p2 == PlayerMove.Scissors)
-            return Outcome.Loss;
-
-        if (p1 == PlayerMove.Paper && p2 == PlayerMove.Rock)
-            return Outcome.Win;
+        result.Add((PlayerMove.Paper, PlayerMove.Scissors, Outcome.Loss));
+        result.Add((PlayerMove.Paper, PlayerMove.Rock, Outcome.Win));
         
-        if (p1 == PlayerMove.Scissors && p2 == PlayerMove.Paper)
-            return Outcome.Win;
+        result.Add((PlayerMove.Scissors, PlayerMove.Rock, Outcome.Loss));
+        result.Add((PlayerMove.Scissors, PlayerMove.Paper, Outcome.Win));
 
-        if (p1 == PlayerMove.Scissors && p2 == PlayerMove.Rock)
-            return Outcome.Loss;
-
-        return Outcome.Loss;
+        var t = result.First(t => t.Item1 == p1 && t.Item2 == p2);
+        return t.Item3;
     }
 
 
@@ -98,8 +92,6 @@ public class DayTwoTest
         
         Assert.That(Outcome.Draw, Is.EqualTo(RoundOutcomeForPlayer(
             PlayerMove.Rock, PlayerMove.Rock)));
-       
-        
         
         Assert.That(Outcome.Win, Is.EqualTo(RoundOutcomeForPlayer(
             PlayerMove.Paper, PlayerMove.Rock)));
@@ -119,7 +111,5 @@ public class DayTwoTest
         
         Assert.That(Outcome.Draw, Is.EqualTo(RoundOutcomeForPlayer(
             PlayerMove.Scissors, PlayerMove.Scissors)));
-        
-
     }
 }
