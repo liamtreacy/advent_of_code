@@ -82,7 +82,7 @@ public class Tests
         // Get input
         var input_string = File.ReadAllText(
             $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
-            $"input.txt");
+            $"DayOneInput.txt");
         
         // Get elves
         var elves = ParseStringForElves(input_string);
@@ -99,7 +99,7 @@ public class Tests
         // Get input
         var input_string = File.ReadAllText(
             $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
-            $"input.txt");
+            $"DayOneInput.txt");
         
         // Get elves
         var elves = ParseStringForElves(input_string);
