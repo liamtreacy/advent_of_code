@@ -94,7 +94,7 @@ public class Tests
     }
     
     [Test]
-    public void Not_A_Unit_Test_But_The_Real_Day_Two()
+    public void Not_A_Unit_Test_But_The_Real_Day_One_Part_Two()
     {
         // Get input
         var input_string = File.ReadAllText(
@@ -106,6 +106,6 @@ public class Tests
         
         // Get top three calorie count
 
-        Assert.AreEqual(205805, CaloriesOfTopNElves(3, elves));
+        Assert.That(CaloriesOfTopNElves(3, elves), Is.EqualTo(205805));
     }
 }
