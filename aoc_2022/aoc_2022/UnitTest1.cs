@@ -35,6 +35,12 @@ public class Tests
         return elves;
     }
 
+    int GetPositonLargestCalorieCount(List<Elf> elves)
+    {
+        return elves.IndexOf(elves.OrderByDescending(
+            i => i.Calories).First());
+    }
+
     [Test]
     public void Parse_Input()
     {
@@ -43,5 +49,17 @@ public class Tests
 
         var elves = ParseStringForElves(input);
         Assert.That(6000, Is.EqualTo(elves[0].Calories));
+    }
+
+    [Test]
+    public void Return_Elf_With_Most_Calories()
+    {
+        var elves = new List<Elf>();
+        elves.Add(new Elf{Calories = 300});
+        elves.Add(new Elf{Calories = 400});
+        elves.Add(new Elf{Calories = 900});
+        elves.Add(new Elf{Calories = 0});
+        
+        Assert.AreEqual(2, GetPositonLargestCalorieCount(elves));
     }
 }
