@@ -49,22 +49,27 @@ public class DayTwoTest
         public int RunningScore { get; set; }
         public PlayerMove CurrentMove { get; set; }
     }
-
-    Outcome RoundOutcomeForPlayerMove(PlayerMove p1, PlayerMove p2)
+    
+    List<(PlayerMove, PlayerMove, Outcome)> OutcomeTuples()
     {
-        if (p1 == p2)
-            return Outcome.Draw;
-
         var result = new List<(PlayerMove, PlayerMove, Outcome)>();
         result.Add((PlayerMove.Rock, PlayerMove.Scissors, Outcome.Win));
         result.Add((PlayerMove.Rock, PlayerMove.Paper, Outcome.Loss));
 
         result.Add((PlayerMove.Paper, PlayerMove.Scissors, Outcome.Loss));
         result.Add((PlayerMove.Paper, PlayerMove.Rock, Outcome.Win));
-        
+
         result.Add((PlayerMove.Scissors, PlayerMove.Rock, Outcome.Loss));
         result.Add((PlayerMove.Scissors, PlayerMove.Paper, Outcome.Win));
+        return result;
+    }
 
+    Outcome RoundOutcomeForPlayerMove(PlayerMove p1, PlayerMove p2)
+    {
+        if (p1 == p2)
+            return Outcome.Draw;
+
+        var result = OutcomeTuples();
         var t = result.First(t => t.Item1 == p1 && t.Item2 == p2);
         return t.Item3;
     }
@@ -72,26 +77,16 @@ public class DayTwoTest
     PlayerMove DetermineYourMoveOnDesiredOutcome(char c, PlayerMove OpposingMove)
     {
         // x lose, y draw, z win
-        
-        var result = new List<(PlayerMove, PlayerMove, Outcome)>();
-        result.Add((PlayerMove.Rock, PlayerMove.Scissors, Outcome.Win));
-        result.Add((PlayerMove.Rock, PlayerMove.Paper, Outcome.Loss));
+        if (c == 'Y')
+            return OpposingMove;
 
-        result.Add((PlayerMove.Paper, PlayerMove.Scissors, Outcome.Loss));
-        result.Add((PlayerMove.Paper, PlayerMove.Rock, Outcome.Win));
-        
-        result.Add((PlayerMove.Scissors, PlayerMove.Rock, Outcome.Loss));
-        result.Add((PlayerMove.Scissors, PlayerMove.Paper, Outcome.Win));
+        var result = OutcomeTuples();
 
         if (c == 'X')
         {
             var x = result.First(t =>
                 t.Item2 == OpposingMove && t.Item3 == Outcome.Loss);
             return x.Item1;
-        }
-        else if (c == 'Y')
-        {
-            return OpposingMove;
         }
         else if (c == 'Z')
         {
@@ -129,9 +124,9 @@ public class DayTwoTest
             return;
         }
     }
-    // r, p, s
+
     [Test]
-    public void Fight_win_test()
+    public void Fight_Win_Test()
     {
         var one = new Player { CurrentMove = PlayerMove.Paper };
         var two = new Player { CurrentMove = PlayerMove.Rock };
@@ -143,7 +138,7 @@ public class DayTwoTest
     }
     
     [Test]
-    public void Fight_loss_test()
+    public void Fight_Loss_Test()
     {
         var one = new Player { CurrentMove = PlayerMove.Paper };
         var two = new Player { CurrentMove = PlayerMove.Scissors };
@@ -155,7 +150,7 @@ public class DayTwoTest
     }
 
     [Test]
-    public void Fight_draw_test()
+    public void Fight_Draw_Test()
     {
         var one = new Player { CurrentMove = PlayerMove.Paper };
         var two = new Player { CurrentMove = PlayerMove.Paper };
