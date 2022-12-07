@@ -7,7 +7,7 @@ using NUnit.Framework;
 [TestFixture]
 public class DayTwoTest
 {
-    PlayerMove ConvertToPlayerMove(char c)
+    PlayerMove ConvertOpposingMoveToPlayerMove(char c)
     {
         return c switch
         {
@@ -18,7 +18,7 @@ public class DayTwoTest
         };
     }
     
-    PlayerMove ConvertOpposingMoveToPlayerMove(char c)
+    PlayerMove ConvertYourMoveToPlayerMove(char c)
     {
         return c switch
         {
@@ -138,17 +138,17 @@ public class DayTwoTest
     [Test]
     public void Convert_To_PlayerMove()
     {
-        Assert.That(PlayerMove.Rock, Is.EqualTo(ConvertToPlayerMove('A')));
-        Assert.That(PlayerMove.Paper, Is.EqualTo(ConvertToPlayerMove('B')));
-        Assert.That(PlayerMove.Scissors, Is.EqualTo(ConvertToPlayerMove('C')));
+        Assert.That(PlayerMove.Rock, Is.EqualTo(ConvertOpposingMoveToPlayerMove('A')));
+        Assert.That(PlayerMove.Paper, Is.EqualTo(ConvertOpposingMoveToPlayerMove('B')));
+        Assert.That(PlayerMove.Scissors, Is.EqualTo(ConvertOpposingMoveToPlayerMove('C')));
     }
     
     [Test]
     public void Convert_Opposing_To_PlayerMove()
     {
-        Assert.That(PlayerMove.Rock, Is.EqualTo(ConvertOpposingMoveToPlayerMove('X')));
-        Assert.That(PlayerMove.Paper, Is.EqualTo(ConvertOpposingMoveToPlayerMove('Y')));
-        Assert.That(PlayerMove.Scissors, Is.EqualTo(ConvertOpposingMoveToPlayerMove('Z')));
+        Assert.That(PlayerMove.Rock, Is.EqualTo(ConvertYourMoveToPlayerMove('X')));
+        Assert.That(PlayerMove.Paper, Is.EqualTo(ConvertYourMoveToPlayerMove('Y')));
+        Assert.That(PlayerMove.Scissors, Is.EqualTo(ConvertYourMoveToPlayerMove('Z')));
     }
 
     [Test]
@@ -195,8 +195,8 @@ public class DayTwoTest
 
         foreach (var str in input_strings)
         {
-            p1.CurrentMove = ConvertToPlayerMove(str[0]);
-            p2.CurrentMove = ConvertOpposingMoveToPlayerMove(str[2]);
+            p1.CurrentMove = ConvertOpposingMoveToPlayerMove(str[0]);
+            p2.CurrentMove = ConvertYourMoveToPlayerMove(str[2]);
 
             Fight(p1, p2);
         }
