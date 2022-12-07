@@ -181,4 +181,26 @@ public class DayTwoTest
         Assert.That(Outcome.Draw, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Scissors, PlayerMove.Scissors)));
     }
+
+    [Test]
+    public void Do_Day_Two_For_Real()
+    {
+        // Get input
+        var input_strings = File.ReadAllLines(
+            $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
+            $"DayTwoInput.txt");
+
+        var p1 = new Player();
+        var p2 = new Player();
+
+        foreach (var str in input_strings)
+        {
+            p1.CurrentMove = ConvertToPlayerMove(str[0]);
+            p2.CurrentMove = ConvertOpposingMoveToPlayerMove(str[2]);
+
+            Fight(p1, p2);
+        }
+        
+        Assert.That(p2.RunningScore, Is.EqualTo(0));
+    }
 }
