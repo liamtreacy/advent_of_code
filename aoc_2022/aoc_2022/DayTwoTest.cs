@@ -201,6 +201,6 @@ public class DayTwoTest
             Fight(p1, p2);
         }
         
-        Assert.That(p2.RunningScore, Is.EqualTo(0));
+        Assert.That(p2.RunningScore, Is.EqualTo(15422));
     }
 }
