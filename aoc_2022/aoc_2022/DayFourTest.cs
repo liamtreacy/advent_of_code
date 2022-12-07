@@ -79,4 +79,26 @@ public class DayFourTest
 
         Assert.That(ContainsSubSection(f), Is.EqualTo(true));
     }
+
+    [Test]
+    public void Day_Four_Part_One_For_Real()
+    {
+        // get input
+        var input_strings = File.ReadAllLines(
+            $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
+            $"DayFourInput.txt");
+
+        var l = new List<ElvesPair>();
+
+        int number_pairs_contained = 0;
+
+        foreach (var inputString in input_strings)
+        {
+            if (ContainsSubSection(ParseInput(inputString)))
+                number_pairs_contained++;
+        }
+        
+        
+        Assert.That(number_pairs_contained, Is.EqualTo(532));
+    }
 }
