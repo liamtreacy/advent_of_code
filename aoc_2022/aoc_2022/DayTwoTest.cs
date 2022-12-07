@@ -69,6 +69,40 @@ public class DayTwoTest
         return t.Item3;
     }
 
+    PlayerMove DetermineYourMoveOnDesiredOutcome(char c, PlayerMove OpposingMove)
+    {
+        // x lose, y draw, z win
+        
+        var result = new List<(PlayerMove, PlayerMove, Outcome)>();
+        result.Add((PlayerMove.Rock, PlayerMove.Scissors, Outcome.Win));
+        result.Add((PlayerMove.Rock, PlayerMove.Paper, Outcome.Loss));
+
+        result.Add((PlayerMove.Paper, PlayerMove.Scissors, Outcome.Loss));
+        result.Add((PlayerMove.Paper, PlayerMove.Rock, Outcome.Win));
+        
+        result.Add((PlayerMove.Scissors, PlayerMove.Rock, Outcome.Loss));
+        result.Add((PlayerMove.Scissors, PlayerMove.Paper, Outcome.Win));
+
+        if (c == 'X')
+        {
+            var x = result.First(t =>
+                t.Item2 == OpposingMove && t.Item3 == Outcome.Loss);
+            return x.Item1;
+        }
+        else if (c == 'Y')
+        {
+            return OpposingMove;
+        }
+        else if (c == 'Z')
+        {
+            var x = result.First(t =>
+                t.Item2 == OpposingMove && t.Item3 == Outcome.Win);
+            return x.Item1;
+        }
+
+        return PlayerMove.None;
+    }
+
     void Fight(Player p1, Player p2)
     {
         var outcome = RoundOutcomeForPlayerMove(p1.CurrentMove, p2.CurrentMove);
@@ -183,7 +217,7 @@ public class DayTwoTest
     }
 
     [Test]
-    public void Do_Day_Two_For_Real()
+    public void Do_Day_Two_For_Real_Part_One()
     {
         // Get input
         var input_strings = File.ReadAllLines(
@@ -202,5 +236,28 @@ public class DayTwoTest
         }
         
         Assert.That(p2.RunningScore, Is.EqualTo(15422));
+    }
+    
+    
+    [Test]
+    public void Do_Day_Two_For_Real_Part_Two()
+    {
+        // Get input
+        var input_strings = File.ReadAllLines(
+            $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
+            $"DayTwoInput.txt");
+
+        var p1 = new Player();
+        var p2 = new Player();
+
+        foreach (var str in input_strings)
+        {
+            p1.CurrentMove = ConvertOpposingMoveToPlayerMove(str[0]);
+            p2.CurrentMove = DetermineYourMoveOnDesiredOutcome(str[2], p1.CurrentMove);
+
+            Fight(p1, p2);
+        }
+        
+        Assert.That(p2.RunningScore, Is.EqualTo(15442));
     }
 }
