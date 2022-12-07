@@ -53,21 +53,57 @@ public class DayFourTest
 
     bool OverlapSection(ElvesPair p)
     {
+        var firstElf = p.elf1;
+        var secElf = p.elf2;
+
+        var sec_one_start_pos = firstElf.r[0];
+        var sec_one_end_pos = firstElf.r[1];
+        
+        var sec_two_start_pos = secElf.r[0];
+        var sec_two_end_pos = secElf.r[1];
+        
         /*
-        (4,5,6,7)
-             (6,7,8)
-        
-           (3,4,5)
-        (1,2,3)           
-        */
+         *  i)
+         *      2,3,4,5
+         *          4,5,6
+         *
+         *      sec_one_start_pos = 2
+         *      sec_one_end_pos = 5
+         *
+         *      sec_two_start_pos = 4
+         *      sec_two_end_pos = 6
+         *
+         *      if ( ( sec_two_start_pos <= sec_one_end_pos) &&
+         *              ( sec_two_start_pos >= sec_one_start_pos) )
+         * 
+         *  ii)
+         *          6,7,8
+         *      4,5,6,7
+         *
+         *      sec_one_start_pos = 6
+         *      sec_one_end_pos = 8
+         *
+         *      sec_two_start_pos = 4
+         *      sec_two_end_pos = 7
+         *
+         *      if( ( sec_one_start_pos >= sec_two_start_pos) &&
+         *          ( sec_one_start_pos <= sec_two_end_pos) )
+         */
 
-        // if elf1.r[1] >= elf2.r[0]
-        
-        // if elf1.r[0] <= elf2.r[1]
 
+        if ((sec_two_start_pos <= sec_one_end_pos) &&
+            (sec_two_start_pos >= sec_one_start_pos))
+        {
+            return true;
+        }
 
+        if ((sec_one_start_pos >= sec_two_start_pos) &&
+            (sec_one_start_pos <= sec_two_end_pos))
+        {
+            return true;
+        }
 
-        return (p.elf1.r[1] >= p.elf2.r[0]) || (p.elf1.r[0] >= p.elf2.r[1]);
+        return false;
     }
 
 
@@ -139,6 +175,6 @@ public class DayFourTest
                 number_pairs_overlapped++;
         }
         
-        Assert.That(number_pairs_overlapped, Is.EqualTo(0));
+        Assert.That(number_pairs_overlapped, Is.EqualTo(854));
     }
 }
