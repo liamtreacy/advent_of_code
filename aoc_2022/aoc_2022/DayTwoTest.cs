@@ -75,10 +75,46 @@ public class DayTwoTest
 
         if (outcome == Outcome.Draw)
         {
-            p1.RunningScore += 6;
+            p1.RunningScore += 3;
+            p2.RunningScore += 3;
+            return;
+        }
+
+        if (outcome == Outcome.Loss)
+        {
             p2.RunningScore += 6;
             return;
         }
+
+        if (outcome == Outcome.Win)
+        {
+            p1.RunningScore += 6;
+            return;
+        }
+    }
+    
+    [Test]
+    public void Fight_win_test()
+    {
+        var one = new Player { CurrentMove = PlayerMove.Paper };
+        var two = new Player { CurrentMove = PlayerMove.Rock };
+
+        Fight(one, two);
+
+        Assert.That(one.RunningScore, Is.EqualTo(6));
+        Assert.That(two.RunningScore, Is.EqualTo(0));
+    }
+    
+    [Test]
+    public void Fight_loss_test()
+    {
+        var one = new Player { CurrentMove = PlayerMove.Paper };
+        var two = new Player { CurrentMove = PlayerMove.Scissors };
+
+        Fight(one, two);
+
+        Assert.That(one.RunningScore, Is.EqualTo(0));
+        Assert.That(two.RunningScore, Is.EqualTo(6));
     }
 
     [Test]
@@ -90,8 +126,8 @@ public class DayTwoTest
         Fight(one, two);
         Fight(two, one);
         
-        Assert.That(one.RunningScore, Is.EqualTo(12));
-        Assert.That(two.RunningScore, Is.EqualTo(12));
+        Assert.That(one.RunningScore, Is.EqualTo(6));
+        Assert.That(two.RunningScore, Is.EqualTo(6));
     }
 
 
