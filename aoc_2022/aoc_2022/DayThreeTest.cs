@@ -15,6 +15,19 @@ public class DayThreeTest
         return s1.Intersect(s2).First();
     }
 
+    public char FindCommonType(String s1, String s2, String s3)
+    {
+        var x = s1.Intersect(s2);
+
+        foreach (var match in x)
+        {
+            if (s3.Contains(match))
+                return match;
+        }
+
+        return ' ';
+    }
+
     public int GetPriority(char c)
     {
         if (char.IsUpper(c))
@@ -25,6 +38,28 @@ public class DayThreeTest
         {
             return (int)c - 96;
         }
+    }
+
+    [Test]
+    public void Day_Three_Part_Two_For_Real()
+    {
+        // Get input
+        var input_strings = File.ReadAllLines(
+            $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
+            $"DayThreeInput.txt");
+
+        int sum = 0;
+        for (int i = 0; i < input_strings.Length; i += 3)
+        {
+            var (s1, s2, s3) = (input_strings[i], input_strings[i + 1],
+                input_strings[i + 2]);
+            
+            Console.WriteLine(input_strings[i + 2]);
+
+            var t = FindCommonType(s1, s2, s3);
+            sum += GetPriority(t);
+        }
+        Assert.That(sum, Is.EqualTo(2644));
     }
 
     [Test]
