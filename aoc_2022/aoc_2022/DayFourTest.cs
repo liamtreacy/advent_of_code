@@ -47,8 +47,27 @@ public class DayFourTest
 
     bool ContainsSubSection(ElvesPair p)
     {
-        return (p.elf1.r[0] <= p.elf2.r[0]) && (p.elf1.r[1] >= p.elf2.r[1]) ||
-               (p.elf2.r[0] <= p.elf1.r[0]) && (p.elf2.r[1] >= p.elf1.r[1]);
+        return ((p.elf1.r[0] <= p.elf2.r[0]) && (p.elf1.r[1] >= p.elf2.r[1])) ||
+               ((p.elf2.r[0] <= p.elf1.r[0]) && (p.elf2.r[1] >= p.elf1.r[1]));
+    }
+
+    bool OverlapSection(ElvesPair p)
+    {
+        /*
+        (4,5,6,7)
+             (6,7,8)
+        
+           (3,4,5)
+        (1,2,3)           
+        */
+
+        // if elf1.r[1] >= elf2.r[0]
+        
+        // if elf1.r[0] <= elf2.r[1]
+
+
+
+        return (p.elf1.r[1] >= p.elf2.r[0]) || (p.elf1.r[0] >= p.elf2.r[1]);
     }
 
 
@@ -98,7 +117,28 @@ public class DayFourTest
                 number_pairs_contained++;
         }
         
-        
         Assert.That(number_pairs_contained, Is.EqualTo(532));
+    }
+    
+    
+    [Test]
+    public void Day_Four_Part_Two_For_Real()
+    {
+        // get input
+        var input_strings = File.ReadAllLines(
+            $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
+            $"DayFourInput.txt");
+
+        var l = new List<ElvesPair>();
+
+        int number_pairs_overlapped = 0;
+
+        foreach (var inputString in input_strings)
+        {
+            if (OverlapSection(ParseInput(inputString)))
+                number_pairs_overlapped++;
+        }
+        
+        Assert.That(number_pairs_overlapped, Is.EqualTo(0));
     }
 }
