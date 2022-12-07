@@ -44,7 +44,13 @@ public class DayTwoTest
         Loss
     }
 
-    Outcome RoundOutcomeForPlayer(PlayerMove p1, PlayerMove p2)
+    class Player
+    {
+        public int RunningScore { get; set; }
+        public PlayerMove CurrentMove { get; set; }
+    }
+
+    Outcome RoundOutcomeForPlayerMove(PlayerMove p1, PlayerMove p2)
     {
         if (p1 == p2)
             return Outcome.Draw;
@@ -61,6 +67,31 @@ public class DayTwoTest
 
         var t = result.First(t => t.Item1 == p1 && t.Item2 == p2);
         return t.Item3;
+    }
+
+    void Fight(Player p1, Player p2)
+    {
+        var outcome = RoundOutcomeForPlayerMove(p1.CurrentMove, p2.CurrentMove);
+
+        if (outcome == Outcome.Draw)
+        {
+            p1.RunningScore += 6;
+            p2.RunningScore += 6;
+            return;
+        }
+    }
+
+    [Test]
+    public void Fight_draw_test()
+    {
+        var one = new Player { CurrentMove = PlayerMove.Paper };
+        var two = new Player { CurrentMove = PlayerMove.Paper };
+
+        Fight(one, two);
+        Fight(two, one);
+        
+        Assert.That(one.RunningScore, Is.EqualTo(12));
+        Assert.That(two.RunningScore, Is.EqualTo(12));
     }
 
 
@@ -84,32 +115,31 @@ public class DayTwoTest
     [Test]
     public void Rules_Test()
     {
-        Assert.That(Outcome.Win, Is.EqualTo(RoundOutcomeForPlayer(
+        Assert.That(Outcome.Win, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Rock, PlayerMove.Scissors)));
         
-        Assert.That(Outcome.Loss, Is.EqualTo(RoundOutcomeForPlayer(
+        Assert.That(Outcome.Loss, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Rock, PlayerMove.Paper)));
         
-        Assert.That(Outcome.Draw, Is.EqualTo(RoundOutcomeForPlayer(
+        Assert.That(Outcome.Draw, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Rock, PlayerMove.Rock)));
         
-        Assert.That(Outcome.Win, Is.EqualTo(RoundOutcomeForPlayer(
+        Assert.That(Outcome.Win, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Paper, PlayerMove.Rock)));
         
-        Assert.That(Outcome.Loss, Is.EqualTo(RoundOutcomeForPlayer(
+        Assert.That(Outcome.Loss, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Paper, PlayerMove.Scissors)));
         
-        Assert.That(Outcome.Draw, Is.EqualTo(RoundOutcomeForPlayer(
+        Assert.That(Outcome.Draw, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Paper, PlayerMove.Paper)));
         
-   
-        Assert.That(Outcome.Loss, Is.EqualTo(RoundOutcomeForPlayer(
+        Assert.That(Outcome.Loss, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Scissors, PlayerMove.Rock)));
         
-        Assert.That(Outcome.Win, Is.EqualTo(RoundOutcomeForPlayer(
+        Assert.That(Outcome.Win, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Scissors, PlayerMove.Paper)));
         
-        Assert.That(Outcome.Draw, Is.EqualTo(RoundOutcomeForPlayer(
+        Assert.That(Outcome.Draw, Is.EqualTo(RoundOutcomeForPlayerMove(
             PlayerMove.Scissors, PlayerMove.Scissors)));
     }
 }
