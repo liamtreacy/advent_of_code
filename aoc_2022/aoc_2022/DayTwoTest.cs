@@ -32,7 +32,7 @@ public class DayTwoTest
     enum PlayerMove
     {
         None,
-        Rock,
+        Rock = 1,
         Paper,
         Scissors
     }
@@ -73,6 +73,9 @@ public class DayTwoTest
     {
         var outcome = RoundOutcomeForPlayerMove(p1.CurrentMove, p2.CurrentMove);
 
+        p1.RunningScore += (int)p1.CurrentMove;
+        p2.RunningScore += (int)p2.CurrentMove;
+
         if (outcome == Outcome.Draw)
         {
             p1.RunningScore += 3;
@@ -92,7 +95,7 @@ public class DayTwoTest
             return;
         }
     }
-    
+    // r, p, s
     [Test]
     public void Fight_win_test()
     {
@@ -101,8 +104,8 @@ public class DayTwoTest
 
         Fight(one, two);
 
-        Assert.That(one.RunningScore, Is.EqualTo(6));
-        Assert.That(two.RunningScore, Is.EqualTo(0));
+        Assert.That(one.RunningScore, Is.EqualTo(8));
+        Assert.That(two.RunningScore, Is.EqualTo(1));
     }
     
     [Test]
@@ -113,8 +116,8 @@ public class DayTwoTest
 
         Fight(one, two);
 
-        Assert.That(one.RunningScore, Is.EqualTo(0));
-        Assert.That(two.RunningScore, Is.EqualTo(6));
+        Assert.That(one.RunningScore, Is.EqualTo(2));
+        Assert.That(two.RunningScore, Is.EqualTo(9));
     }
 
     [Test]
@@ -126,8 +129,8 @@ public class DayTwoTest
         Fight(one, two);
         Fight(two, one);
         
-        Assert.That(one.RunningScore, Is.EqualTo(6));
-        Assert.That(two.RunningScore, Is.EqualTo(6));
+        Assert.That(one.RunningScore, Is.EqualTo(10));
+        Assert.That(two.RunningScore, Is.EqualTo(10));
     }
 
 
