@@ -28,6 +28,26 @@ public class DayThreeTest
     }
 
     [Test]
+    public void Day_Three_Part_One_For_Real()
+    {
+        // Get input
+        var input_strings = File.ReadAllLines(
+            $"/Users/liam.treacy/Dev/advent_of_code/aoc_2022/aoc_2022/" +
+            $"DayThreeInput.txt");
+
+        int sum = 0;
+
+        foreach (var inputString in input_strings)
+        {
+            var (s1, s2) = SplitCompartment(inputString);
+            var t = FindCommonType(s1, s2);
+            sum += GetPriority(t);
+        }
+        
+        Assert.That(sum, Is.EqualTo(7701));
+    }
+
+    [Test]
     public void Split_Compartment_Test()
     {
         var s = "vJrwpWtwJgWrhcsFMMfFFhFp";
