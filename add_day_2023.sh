@@ -1,12 +1,12 @@
 #!/bin/bash
 
-DAY=one # replace with the actual day
+DAY=DayOne # replace with the actual day
 
 
 
 pushd 2023
 `dotnet new classlib -o $DAY`
-`mv Class1.cs $DAY.cs`
+`mv $DAY/Class1.cs $DAY/$DAY.cs`
 `dotnet sln add ./$DAY/$DAY.csproj`
 `dotnet new xunit -o $DAY.Tests`
 `dotnet sln add ./$DAY.Tests/$DAY.Tests.csproj`
