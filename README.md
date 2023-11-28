@@ -6,6 +6,6 @@ Entries from previous years are in the `old/` directory.
 
 ### To run
 
-Naviagte to the 2023 directory.
+Naviagte to the `2023/` directory.
 
-Run 'dotnet test' to run all tests in the solution.
+Run `dotnet test` to run all tests in the solution.
