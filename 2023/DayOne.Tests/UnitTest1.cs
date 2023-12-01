@@ -20,4 +20,15 @@ public class UnitTest1
         //Console.WriteLine($"\n=====\n{sut.GetFirstDigit(s)}\n=====\n");
         Assert.Equal(5, sut.GetFirstDigit(s));
     }
+
+    
+    [Fact]
+    public void FindFirstDigitStringWithOneNumberAndLetters()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "abc8def";
+
+        Assert.Equal(8, sut.GetFirstDigit(s));
+    }
 }

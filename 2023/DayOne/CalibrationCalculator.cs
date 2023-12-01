@@ -4,7 +4,13 @@ public class CalibrationCalculator
 {
     public int GetFirstDigit(string s)
     {
-        var numStr = new string(s.TakeWhile(char.IsDigit).ToArray());
+        string numStr = "";
+
+        foreach(var c in s)
+        {
+            if(char.IsDigit(c))
+                numStr += c;
+        }
 
         if(numStr == "")
             return -1;
