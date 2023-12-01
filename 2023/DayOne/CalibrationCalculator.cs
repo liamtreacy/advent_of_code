@@ -4,6 +4,27 @@ using System.IO;
 
 public class CalibrationCalculator
 {
+    public int GetTwoDigitNumberFromString(in string s)
+    {
+        string first, last = "";
+
+        GetFirstAndLastDigits(s, out first, out last);
+
+        first += last;
+
+        int ret;
+
+         bool success = int.TryParse(first, out ret);
+         if (success)
+         {
+            return ret;
+         }
+         else
+         {
+            return -1;
+         }
+    }
+
     public void GetFirstAndLastDigits(in string s, out string first, out string last)
     {
         string numStr = "";

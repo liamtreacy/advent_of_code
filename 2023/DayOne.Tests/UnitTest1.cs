@@ -41,6 +41,28 @@ public class UnitTest1
         Assert.Equal("8", first);
         Assert.Equal("7", last);
     }
+
+    [Fact]
+    public void GetTwoDigitNumberFromString()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "abc1d6e7f";
+
+        Assert.Equal(17, sut.GetTwoDigitNumberFromString(s));
+    }
+
+        [Fact]
+    public void GetTwoDigitNumberFromLargerString()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "oodjdnm9abc1d6e7fhsdsdjhsdhjds8jjs77jhjj6";
+
+        Assert.Equal(96, sut.GetTwoDigitNumberFromString(s));
+    }
+
+
 /*
     [Fact]
     public void doDayOnePartOne()
