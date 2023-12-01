@@ -30,35 +30,16 @@ public class CalibrationCalculator
     public int GetFirstNumberFromSpelledOutIndex(in string s)
     {
         var letterIndexMap = new Dictionary<string, int>();
-        letterIndexMap["zero"] = -1;
-        letterIndexMap["one"] = -1;
-        letterIndexMap["two"] = -1;
-        letterIndexMap["three"] = -1;
-        letterIndexMap["four"] = -1;
-        letterIndexMap["five"] = -1;
-        letterIndexMap["six"] = -1;
-        letterIndexMap["seven"] = -1;
-        letterIndexMap["eight"] = -1;
-        letterIndexMap["nine"] = -1;
+        
+        SortDictAndRemoveNegativeKeyValues(ref letterIndexMap, s);
 
-        foreach(var li in letterIndexMap)
-        {
-            letterIndexMap[li.Key] = s.IndexOf(li.Key);
-        }
-
-        var newDictionary = letterIndexMap.Where(pair => pair.Value >= 0)
-                                 .ToDictionary(pair => pair.Key,
-                                               pair => pair.Value);
-
-        newDictionary.OrderBy(x => x.Value);
-
-        if (newDictionary.Count == 0)
+        if (letterIndexMap.Count == 0)
             return -1;
 
-        return newDictionary.FirstOrDefault().Value;
+        return letterIndexMap.FirstOrDefault().Value;
     }
 
-    private void DoStuff(ref Dictionary<string, int> letterIndexMap, in string s)
+    private void SortDictAndRemoveNegativeKeyValues(ref Dictionary<string, int> letterIndexMap, in string s)
     {
         letterIndexMap["zero"] = -1;
         letterIndexMap["one"] = -1;
@@ -88,7 +69,7 @@ public class CalibrationCalculator
     {
         var letterIndexMap = new Dictionary<string, int>();
 
-        DoStuff(ref letterIndexMap, in s);
+        SortDictAndRemoveNegativeKeyValues(ref letterIndexMap, in s);
 
         if (letterIndexMap.Count == 0)
             return -1;
