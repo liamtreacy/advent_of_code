@@ -1,8 +1,10 @@
 namespace DayOne;
 
+using System.IO;
+
 public class CalibrationCalculator
 {
-    public void GetFirstAndLastDigits(in string s, out int first, out int last)
+    public void GetFirstAndLastDigits(in string s, out string first, out string last)
     {
         string numStr = "";
 
@@ -14,12 +16,56 @@ public class CalibrationCalculator
 
         if(numStr == "")
         {
-            first =-1;
-            last = -1;
+            first = "";
+            last = "";
             return;
         }
 
-        first = int.Parse(numStr[0].ToString());
-        last = int.Parse(numStr[numStr.Length-1].ToString());
+        //Console.WriteLine($"\nnumStr == {numStr}\n");
+        first = numStr[0].ToString();
+        last = numStr[numStr.Length-1].ToString();
     }
+/*
+    public int ReadFileAndSumCalibrationValues(string fileName)
+    {
+        string line;
+        int ret = -1;
+        int first = -1;
+        int last = -1;
+        string firstLastNumStr = "";
+
+        try
+        {
+            StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/" + fileName);
+
+            line = sr.ReadLine();
+            while (line != null)
+            {
+                GetFirstAndLastDigits(line, out first, out last);
+                firstLastNumStr += first.ToString();
+                firstLastNumStr += last.ToString();
+
+                Console.WriteLine($"\n\n{firstLastNumStr}\n");
+
+
+                ret = ret + int.Parse(firstLastNumStr);
+                Console.WriteLine($"ret == {ret}\n");
+                firstLastNumStr = "";
+
+                line = sr.ReadLine();
+            }
+            sr.Close();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Executing finally block.");
+        }
+
+        return ret;
+    }
+    */
 }

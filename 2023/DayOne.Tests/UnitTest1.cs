@@ -9,10 +9,10 @@ public class UnitTest1
 
         var s = "aa";
 
-        int first, last = -1;
+        string first, last;
         sut.GetFirstAndLastDigits(s, out first, out last);
-        Assert.Equal(-1, first);
-        Assert.Equal(-1, last);
+        Assert.Equal("", first);
+        Assert.Equal("", last);
     }
 
     [Fact]
@@ -22,10 +22,10 @@ public class UnitTest1
 
         var s = "5";
 
-        int first, last = -1;
+        string first, last;
         sut.GetFirstAndLastDigits(s, out first, out last);
-        Assert.Equal(5, first);
-        Assert.Equal(5, last);
+        Assert.Equal("5", first);
+        Assert.Equal("5", last);
     }
 
     
@@ -36,9 +36,22 @@ public class UnitTest1
 
         var s = "abc8d6e7f";
 
-        int first, last = -1;
+        string first, last;
         sut.GetFirstAndLastDigits(s, out first, out last);
-        Assert.Equal(8, first);
-        Assert.Equal(7, last);
+        Assert.Equal("8", first);
+        Assert.Equal("7", last);
     }
+/*
+    [Fact]
+    public void doDayOnePartOne()
+    {
+        var fileName = "input_day_one_part_one.txt";
+
+        var sut = new CalibrationCalculator();
+
+        var ret = sut.ReadFileAndSumCalibrationValues(fileName);
+
+        Assert.Equal(0, ret);
+    }
+    */
 }
