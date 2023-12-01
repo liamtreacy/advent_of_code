@@ -17,4 +17,20 @@ public class CalibrationCalculator
 
         return int.Parse(numStr[0].ToString());
     }
+
+    public int GetLastDigit(string s)
+    {
+        string numStr = "";
+
+        foreach(var c in s)
+        {
+            if(char.IsDigit(c))
+                numStr += c;
+        }
+
+        if(numStr == "")
+            return -1;
+
+        return int.Parse(numStr[numStr.Length-1].ToString());
+    }
 }
