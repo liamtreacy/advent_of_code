@@ -86,4 +86,34 @@ public class UnitTest1
 
         Assert.Equal("one", sut.GetFirstNumberFromSpelledOut(s));
     }
+
+    [Fact]
+    public void TestGetFirstNumberEightAsStringFromSpelledOut()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "abcdeightonesevenf78threedzvlm1";
+
+        Assert.Equal("one", sut.GetFirstNumberFromSpelledOut(s));
+    }
+
+    [Fact]
+    public void TestGetFirstNumberFromSpelledOutIndexNoNumer()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "abcdef";
+        
+        Assert.Equal(-1, sut.GetFirstNumberFromSpelledOutIndex(s));
+    }
+
+    [Fact]
+    public void TestGetFirstNumberFromSpelledOutIndexEight()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "aeightabcdef";
+        
+        Assert.Equal(1, sut.GetFirstNumberFromSpelledOutIndex(s));
+    }
 }

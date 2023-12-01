@@ -27,6 +27,37 @@ public class CalibrationCalculator
          }
     }
 
+    public int GetFirstNumberFromSpelledOutIndex(in string s)
+    {
+                var letterIndexMap = new Dictionary<string, int>();
+        letterIndexMap["zero"] = -1;
+        letterIndexMap["one"] = -1;
+        letterIndexMap["two"] = -1;
+        letterIndexMap["three"] = -1;
+        letterIndexMap["four"] = -1;
+        letterIndexMap["five"] = -1;
+        letterIndexMap["six"] = -1;
+        letterIndexMap["seven"] = -1;
+        letterIndexMap["eight"] = -1;
+        letterIndexMap["nine"] = -1;
+
+        foreach(var li in letterIndexMap)
+        {
+            letterIndexMap[li.Key] = s.IndexOf(li.Key);
+        }
+
+        var newDictionary = letterIndexMap.Where(pair => pair.Value >= 0)
+                                 .ToDictionary(pair => pair.Key,
+                                               pair => pair.Value);
+
+        newDictionary.OrderBy(x => x.Value);
+
+        if (newDictionary.Count == 0)
+            return -1;
+
+        return newDictionary.FirstOrDefault().Value;
+    }
+
     public string GetFirstNumberFromSpelledOut(in string s)
     {
         var letterIndexMap = new Dictionary<string, int>();
