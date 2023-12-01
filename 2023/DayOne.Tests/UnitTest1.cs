@@ -71,7 +71,7 @@ public class UnitTest1
 
         var sut = new CalibrationCalculator();
 
-        var ret = sut.ReadFileAndSumCalibrationValues(fileName);
+        var ret = sut.ReadFileAndSumCalibrationValuesPartOne(fileName);
 
         Assert.Equal(55447, ret);
     }

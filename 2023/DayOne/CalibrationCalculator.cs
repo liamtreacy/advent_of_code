@@ -42,6 +42,42 @@ public class CalibrationCalculator
 
     //
 
+    public int GetTwoDigitNumberFromStringPartTwo(in string s)
+    {
+        // TODO
+        int firstDigitIdx = GetFirstNumberFromDigitIndex(s);
+        int firstNumberIdx = GetFirstNumberFromSpelledOutIndex(s);
+
+        int lastDigitIdx = GetLastNumberFromDigitIndex(s);
+        int lastNumberIdx = GetLastNumberFromSpelledOutIndex(s);
+
+        // use first + last
+        int firstIdx;
+        int lastIndx;
+/* won't work, need to discriminate between number and idx
+        if (firstDigitIdx < firstNumberIdx)
+        {
+            firstIdx = firstDigitIdx;
+        }
+        else
+        {
+            firstIdx = firstNumberIdx;
+        }
+
+        if (lastDigitIdx < lastNumberIdx)
+        {
+            lastIndx = lastDigitIdx;
+        }
+        else
+        {
+            lastIndx = lastNumberIdx;
+        }
+*/
+       // string doubleDigitStr = 
+
+        return -1;
+    }
+
 
     public int GetTwoDigitNumberFromString(in string s)
     {
@@ -140,7 +176,7 @@ public class CalibrationCalculator
         last = numStr[numStr.Length-1].ToString();
     }
 
-    public int ReadFileAndSumCalibrationValues(string fileName)
+    public int ReadFileAndSumCalibrationValuesPartOne(string fileName)
     {
         string line;
         int ret = 0;
@@ -153,6 +189,39 @@ public class CalibrationCalculator
             while (line != null)
             {
                 ret += GetTwoDigitNumberFromString(line);
+
+                Console.WriteLine($"ret == {ret}\n");
+
+                line = sr.ReadLine();
+            }
+            sr.Close();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Executing finally block.");
+        }
+
+        return ret;
+    }
+
+
+    public int ReadFileAndSumCalibrationValuesPartTwo(string fileName)
+    {
+        string line;
+        int ret = 0;
+
+        try
+        {
+            StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/" + fileName);
+
+            line = sr.ReadLine();
+            while (line != null)
+            {
+                ret += GetTwoDigitNumberFromStringPartTwo(line);
 
                 Console.WriteLine($"ret == {ret}\n");
 
