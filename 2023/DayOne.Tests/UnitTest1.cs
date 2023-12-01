@@ -136,4 +136,44 @@ public class UnitTest1
         
         Assert.Equal(13, sut.GetLastNumberFromSpelledOutIndex(s));
     }
+
+    [Fact]
+    public void TestGetFirstNumberFromDigitIndexNoNumber()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "aeightaonebcdsevenef";
+        
+        Assert.Equal(-1, sut.GetFirstNumberFromDigitIndex(s));
+    }
+
+    [Fact]
+    public void TestGetFirstNumberFromDigitIndexNine()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "ae9ighta6oneb7cdseven8ef";
+        
+        Assert.Equal(2, sut.GetFirstNumberFromDigitIndex(s));
+    }
+
+    [Fact]
+    public void TestGetLastNumberFromDigitIndexNoNumber()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "aeightaonebcdsevenef";
+        
+        Assert.Equal(-1, sut.GetLastNumberFromDigitIndex(s));
+    }
+
+    [Fact]
+    public void TestGetLastNumberFromDigitIndexNine()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "ae9ighta6oneb7cdseven8e7f";
+        
+        Assert.Equal(23, sut.GetLastNumberFromDigitIndex(s));
+    }
 }
