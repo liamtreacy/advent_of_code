@@ -58,9 +58,8 @@ public class CalibrationCalculator
         return newDictionary.FirstOrDefault().Value;
     }
 
-    public int GetLastNumberFromSpelledOutIndex(in string s)
+    private void DoStuff(ref Dictionary<string, int> letterIndexMap, in string s)
     {
-        var letterIndexMap = new Dictionary<string, int>();
         letterIndexMap["zero"] = -1;
         letterIndexMap["one"] = -1;
         letterIndexMap["two"] = -1;
@@ -82,12 +81,19 @@ public class CalibrationCalculator
                                                pair => pair.Value);
 
 
-        newDictionary = newDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+        letterIndexMap = newDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+    }
 
-        if (newDictionary.Count == 0)
+    public int GetLastNumberFromSpelledOutIndex(in string s)
+    {
+        var letterIndexMap = new Dictionary<string, int>();
+
+        DoStuff(ref letterIndexMap, in s);
+
+        if (letterIndexMap.Count == 0)
             return -1;
 
-        return newDictionary.LastOrDefault().Value;
+        return letterIndexMap.LastOrDefault().Value;
     }
 
     public string GetFirstNumberFromSpelledOut(in string s)
