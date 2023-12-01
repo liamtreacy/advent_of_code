@@ -63,7 +63,7 @@ public class UnitTest1
     }
 
 
-/*
+
     [Fact]
     public void doDayOnePartOne()
     {
@@ -73,7 +73,6 @@ public class UnitTest1
 
         var ret = sut.ReadFileAndSumCalibrationValues(fileName);
 
-        Assert.Equal(0, ret);
+        Assert.Equal(55447, ret);
     }
-    */
 }
