@@ -116,4 +116,24 @@ public class UnitTest1
         
         Assert.Equal(1, sut.GetFirstNumberFromSpelledOutIndex(s));
     }
+
+    [Fact]
+    public void TestGetLastNumberFromSpelledOutIndexNoNumber()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "aeitabcdef";
+        
+        Assert.Equal(-1, sut.GetLastNumberFromSpelledOutIndex(s));
+    }
+
+    [Fact]
+    public void TestGetLastNumberFromSpelledOutIndexSeven()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "aeightaonebcdsevenef";
+        
+        Assert.Equal(13, sut.GetLastNumberFromSpelledOutIndex(s));
+    }
 }
