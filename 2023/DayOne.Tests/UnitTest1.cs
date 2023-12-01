@@ -63,9 +63,9 @@ public class UnitTest1
     }
 
 
-
+/*
     [Fact]
-    public void doDayOnePartOne()
+    public void DoDayOnePartOne()
     {
         var fileName = "input_day_one_part_one.txt";
 
@@ -74,5 +74,16 @@ public class UnitTest1
         var ret = sut.ReadFileAndSumCalibrationValues(fileName);
 
         Assert.Equal(55447, ret);
+    }
+    */
+
+    [Fact]
+    public void TestGetFirstNumberAsStringFromSpelledOut()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "onesevenf78threedzvlm1";
+
+        Assert.Equal("one", sut.GetFirstNumberFromSpelledOut(s));
     }
 }

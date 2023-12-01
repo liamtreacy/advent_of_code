@@ -1,6 +1,8 @@
 namespace DayOne;
 
+using System.Collections;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 public class CalibrationCalculator
 {
@@ -23,6 +25,34 @@ public class CalibrationCalculator
          {
             return -1;
          }
+    }
+
+    public string GetFirstNumberFromSpelledOut(in string s)
+    {
+        var letterIndexMap = new Dictionary<string, int>();
+        letterIndexMap["zero"] = -1;
+        letterIndexMap["one"] = -1;
+        letterIndexMap["two"] = -1;
+        letterIndexMap["three"] = -1;
+        letterIndexMap["four"] = -1;
+        letterIndexMap["five"] = -1;
+        letterIndexMap["six"] = -1;
+        letterIndexMap["seven"] = -1;
+        letterIndexMap["eight"] = -1;
+        letterIndexMap["nine"] = -1;
+
+        foreach(var li in letterIndexMap)
+        {
+            letterIndexMap[li.Key] = s.IndexOf(li.Key);
+        }
+
+        var newDictionary = letterIndexMap.Where(pair => pair.Value >= 0)
+                                 .ToDictionary(pair => pair.Key,
+                                               pair => pair.Value);
+
+        newDictionary.OrderBy(x => x.Value);
+
+        return newDictionary.FirstOrDefault().Key;
     }
 
     public void GetFirstAndLastDigits(in string s, out string first, out string last)
