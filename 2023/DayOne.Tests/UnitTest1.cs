@@ -176,4 +176,45 @@ public class UnitTest1
         
         Assert.Equal(23, sut.GetLastNumberFromDigitIndex(s));
     }
+
+    [Fact]
+    public void TestGetTwoDigitNumberFromStringPartTwoOnlyDigits()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "12";
+        
+        Assert.Equal(12, sut.GetTwoDigitNumberFromStringPartTwo(s));
+    }
+/*
+    [Fact]
+    public void TestGetTwoDigitNumberFromStringPartTwoOnlySpelledNumbers()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "threesix";
+        
+        Assert.Equal(36, sut.GetTwoDigitNumberFromStringPartTwo(s));
+    }
+
+    [Fact]
+    public void TestGetTwoDigitNumberFromStringPartTwoMix()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "three4";
+        
+        Assert.Equal(34, sut.GetTwoDigitNumberFromStringPartTwo(s));
+    }
+
+    [Fact]
+    public void TestGetTwoDigitNumberFromStringPartTwoMixOthers()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "onethree45";
+        
+        Assert.Equal(15, sut.GetTwoDigitNumberFromStringPartTwo(s));
+    }
+    */
 }

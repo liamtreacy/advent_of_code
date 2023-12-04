@@ -51,31 +51,25 @@ public class CalibrationCalculator
         int lastDigitIdx = GetLastNumberFromDigitIndex(s);
         int lastNumberIdx = GetLastNumberFromSpelledOutIndex(s);
 
-        // use first + last
-        int firstIdx;
-        int lastIndx;
-/* won't work, need to discriminate between number and idx
-        if (firstDigitIdx < firstNumberIdx)
+        string first = "", last = "", tmp = "";
+
+        Console.WriteLine($"firstDigitIdx == {firstDigitIdx}\nfirstNumberIdx == {firstNumberIdx}\nlastDigitIdx == {lastDigitIdx}\nlastNumberIdx == {lastNumberIdx}");
+
+        if( firstNumberIdx == -1 || (firstDigitIdx != -1 && firstDigitIdx < firstNumberIdx) )
         {
-            firstIdx = firstDigitIdx;
-        }
-        else
-        {
-            firstIdx = firstNumberIdx;
+            // use it
+            GetFirstAndLastDigits(s, out first, out tmp);
         }
 
-        if (lastDigitIdx < lastNumberIdx)
+        if( lastNumberIdx == -1 || (lastDigitIdx != -1 && lastDigitIdx < lastNumberIdx) )
         {
-            lastIndx = lastDigitIdx;
+            // use it
+            GetFirstAndLastDigits(s, out tmp, out last);
         }
-        else
-        {
-            lastIndx = lastNumberIdx;
-        }
-*/
-       // string doubleDigitStr = 
 
-        return -1;
+        first = first + last;
+        Console.WriteLine($" first == {first}");
+        return int.Parse(first);
     }
 
 
