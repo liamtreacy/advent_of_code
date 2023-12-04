@@ -196,7 +196,7 @@ public class UnitTest1
         
         Assert.Equal(36, sut.GetTwoDigitNumberFromStringPartTwo(s));
     }
-/*
+
     [Fact]
     public void TestGetTwoDigitNumberFromStringPartTwoMix()
     {
@@ -216,5 +216,17 @@ public class UnitTest1
         
         Assert.Equal(15, sut.GetTwoDigitNumberFromStringPartTwo(s));
     }
-    */
+
+    [Fact]
+    public void TestDoDayTwoPPartTwo()
+    {
+        var fileName = "input_day_one_part_one.txt";
+
+        var sut = new CalibrationCalculator();
+
+        var ret = sut.ReadFileAndSumCalibrationValuesPartTwo(fileName);
+
+        Assert.Equal(0, ret);
+    }
+    
 }
