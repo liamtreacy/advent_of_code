@@ -186,7 +186,7 @@ public class UnitTest1
         
         Assert.Equal(12, sut.GetTwoDigitNumberFromStringPartTwo(s));
     }
-/*
+
     [Fact]
     public void TestGetTwoDigitNumberFromStringPartTwoOnlySpelledNumbers()
     {
@@ -196,7 +196,7 @@ public class UnitTest1
         
         Assert.Equal(36, sut.GetTwoDigitNumberFromStringPartTwo(s));
     }
-
+/*
     [Fact]
     public void TestGetTwoDigitNumberFromStringPartTwoMix()
     {
