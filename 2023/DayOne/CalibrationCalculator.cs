@@ -59,11 +59,12 @@ public class CalibrationCalculator
         {
             // use it
             GetFirstAndLastDigits(s, out first, out tmp);
+            Console.WriteLine($"GetFirstAndLastDigits == {first}, tmp == {tmp}, s == {s}");
         }
         else if( firstDigitIdx == -1 || (firstNumberIdx != -1 && firstNumberIdx < firstDigitIdx) )
         {
             // use it
-            Console.WriteLine($"=== {GetFirstNumberFromSpelledOut(s)}\n{(convertSpelledNumberToDigit(GetFirstNumberFromSpelledOut(s))).ToString()}\n");
+            Console.WriteLine($"===\nHERE?\nfirstNumberIdx < firstDigitIdx == {firstNumberIdx < firstDigitIdx} {GetFirstNumberFromSpelledOut(s)}\n{(convertSpelledNumberToDigit(GetFirstNumberFromSpelledOut(s))).ToString()}\n");
             first = (convertSpelledNumberToDigit(GetFirstNumberFromSpelledOut(s))).ToString();
         }
 
@@ -72,7 +73,7 @@ public class CalibrationCalculator
             // use it
             
             GetFirstAndLastDigits(s, out tmp, out last);
-            Console.WriteLine($"tmp == {tmp} , last = {last}");
+            //Console.WriteLine($"tmp == {tmp} , last = {last}");
         }
         else if( lastDigitIdx == -1 || (lastNumberIdx != -1 && lastNumberIdx > lastDigitIdx) )
         {
@@ -81,7 +82,7 @@ public class CalibrationCalculator
         }
 
         first = first + last;
-        Console.WriteLine($" first == {first}");
+        Console.WriteLine($" two digit number == {first}");
         return int.Parse(first);
     }
 
@@ -213,7 +214,12 @@ public class CalibrationCalculator
                                  .ToDictionary(pair => pair.Key,
                                                pair => pair.Value);
 
-        newDictionary.OrderBy(x => x.Value);
+        newDictionary.OrderBy(x => x.Key);
+
+        foreach(var v in newDictionary)
+        {
+            Console.WriteLine($"\n{v.Key} , {v.Value}");
+        }
 
         return newDictionary.FirstOrDefault().Key;
     }
@@ -274,7 +280,7 @@ public class CalibrationCalculator
 
     public int ReadFileAndSumCalibrationValuesPartTwo(string fileName)
     {
-                string line;
+        string line;
         int ret = 0;
 
         try
@@ -286,7 +292,7 @@ public class CalibrationCalculator
             {
                 ret += GetTwoDigitNumberFromStringPartTwo(line);
 
-                Console.WriteLine($"ret == {ret}\n");
+                //Console.WriteLine($"ret == {ret}\n");
 
                 line = sr.ReadLine();
             }

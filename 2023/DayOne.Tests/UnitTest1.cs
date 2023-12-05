@@ -1,7 +1,22 @@
+using Microsoft.VisualBasic;
+
 namespace DayOne.Tests;
 
 public class UnitTest1
 {
+        /*
+    [Fact]
+    public void TestGetAllDigitsFromString()
+    {
+        var sut = new CalibrationCalculator2();
+
+        var s = "sixfour9fivernqcknsbgpfrzmgz3";
+        var ret = sut.GetNumbersAndIndexes(s);
+        
+        Assert.Equal(null, ret);
+    }
+
+
     [Fact]
     public void FindFirstDigitStringWithNoNumbersReturnsMinusOne()
     {
@@ -76,7 +91,7 @@ public class UnitTest1
         Assert.Equal(55447, ret);
     }
     */
-
+/*
     [Fact]
     public void TestGetFirstNumberAsStringFromSpelledOut()
     {
@@ -215,7 +230,18 @@ public class UnitTest1
         var s = "onethree45";
         
         Assert.Equal(15, sut.GetTwoDigitNumberFromStringPartTwo(s));
+    }*/
+/*
+    [Fact]
+    public void TestGetTwoDigitNumberFromStringPartTwoMixOthers()
+    {
+        var sut = new CalibrationCalculator();
+
+        var s = "sixfour9fivernqcknsbgpfrzmgz3";
+        
+        Assert.Equal(63, sut.GetTwoDigitNumberFromStringPartTwo(s));
     }
+*/
 
     [Fact]
     public void TestDoDayTwoPPartTwo()
@@ -227,6 +253,5 @@ public class UnitTest1
         var ret = sut.ReadFileAndSumCalibrationValuesPartTwo(fileName);
 
         Assert.Equal(0, ret);
-    }
-    
+    }    
 }
