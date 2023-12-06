@@ -34,4 +34,14 @@ public class CardCalculator
     {
         return arrOne.Intersect(arrTwo).Count();
     }
+
+    public int WinningScore(int[] arrOne, int[] arrTwo)
+    {
+        int n = GetNumMatches(arrOne, arrTwo);
+
+        if (n == 0)
+            return 0;
+        
+        return 2^(n-1);
+    }
 }
