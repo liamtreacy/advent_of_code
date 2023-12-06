@@ -68,7 +68,7 @@ public class DayOneCalcultor
         }
         else
         {
-            firstNum = ConvertToString(GetFirstSpelledOutNumber(s)).ToString();
+            firstNum = ConvertSpelledNumberToStringRepresentation(GetFirstSpelledOutNumber(s)).ToString();
         }
 
         if( lastDigitIdx >= 0 && lastDigitIdx > lastSpelledNumberIdx)
@@ -77,7 +77,7 @@ public class DayOneCalcultor
         }
         else
         {
-            lastNum = ConvertToString(GetLastSpelledOutNumber(s)).ToString();
+            lastNum = ConvertSpelledNumberToStringRepresentation(GetLastSpelledOutNumber(s)).ToString();
         }
 
         if(firstNum == "-1")
@@ -90,7 +90,7 @@ public class DayOneCalcultor
         return int.Parse(ss);
     }
 
-    public int ConvertToString(string s)
+    public int ConvertSpelledNumberToStringRepresentation(string s)
     {
         switch(s)
         {
