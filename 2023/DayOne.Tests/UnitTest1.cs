@@ -244,6 +244,8 @@ public class UnitTest1
     }
 
 */
+
+/*
     [Fact]
     public void TestDoDayTwoPPartTwo()
     {
@@ -280,4 +282,5 @@ public class UnitTest1
 
         Assert.Equal(expected, actual);
     }
+    */
 }

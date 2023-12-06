@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DAY=DayOne # replace with the actual day
+DAY=DayOne_AttemptTwo # replace with the actual day
 
 
 
