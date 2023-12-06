@@ -1,4 +1,5 @@
 using Microsoft.VisualBasic;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Utilities;
 
 namespace DayOne.Tests;
 
@@ -241,17 +242,42 @@ public class UnitTest1
         
         Assert.Equal(63, sut.GetTwoDigitNumberFromStringPartTwo(s));
     }
-*/
 
+*/
     [Fact]
     public void TestDoDayTwoPPartTwo()
     {
         var fileName = "input_day_one_part_one.txt";
 
-        var sut = new CalibrationCalculator();
+        var sut = new CalibrationCalculator2();
 
         var ret = sut.ReadFileAndSumCalibrationValuesPartTwo(fileName);
 
         Assert.Equal(0, ret);
-    }    
+    }
+
+    [Fact]
+    public void TestFromInputFile()
+    {
+        string[] input = {  "two1nine",
+                            "eightwothree",
+                            "abcone2threexyz",
+                            "xtwone3four",
+                            "4nineeightseven2",
+                            "zoneight234",
+                            "7pqrstsixteen"
+            };
+        int expected = 281;//29;//281;
+        int actual = 0;
+        var sut = new CalibrationCalculator2();
+
+        foreach(var v in input)
+        {
+            int tmp = sut.SolvePuzzle(v);
+            Console.WriteLine($"{tmp}");
+            actual += tmp;
+        }
+
+        Assert.Equal(expected, actual);
+    }
 }

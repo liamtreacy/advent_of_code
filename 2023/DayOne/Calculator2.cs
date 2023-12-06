@@ -81,7 +81,7 @@ public class CalibrationCalculator2
 
         foreach(var ss in letterIndexMap)
         {
-            //Console.WriteLine($"{ss.Key} , {ss.Value}\n");
+            Console.WriteLine($"{ss.Key} , {ss.Value}\n");
         }
 
         // Convert to numbers and indexes
@@ -98,14 +98,16 @@ public class CalibrationCalculator2
                 idxNumberMap.Add(i, (int)(s[i] - '0'));
             }
         }
-
-        foreach(var ss in idxNumberMap)
+        Console.WriteLine("=== idxMap ===\n");
+        Dictionary<int,int> sortedDict = idxNumberMap.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+        
+        foreach(var ss in sortedDict)
         {
             Console.WriteLine($"{ss.Key} , {ss.Value}\n");
         }
 
-
-        return idxNumberMap;
+        //idxNumberMap = idxNumberMap.OrderBy(x => x.Key);
+        return sortedDict;
     }
 
     public int convertSpelledNumberToDigit(string s)
