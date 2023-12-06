@@ -20,50 +20,44 @@ public class CardCalculator
         string[] parts = input.Split(new char[] { ':', '|' }, StringSplitOptions.RemoveEmptyEntries);
 
         winningNos = GenerateArray(parts[1].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries));
-
-        
         playerNos = GenerateArray(parts[2].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries));
     }
 
-    public int GetNumMatches(int[] arrOne, int[] arrTwo)
+    public int GetNumMatches(int[] winningArr, int[] playerArr)
     {
-        Console.WriteLine($"===\narrOne = {arrOne.ToString()}\narrTwo == {arrTwo.ToString()}\n{arrOne.Intersect(arrTwo).Count()}\n");
-        return arrOne.Intersect(arrTwo).Count();
+        return winningArr.Intersect(playerArr).Count();
     }
 
-    public int WinningScore(int[] arrOne, int[] arrTwo)
+    public int WinningScore(int[] winningArr, int[] playerArr)
     {
-        int n = GetNumMatches(arrOne, arrTwo);
+        int n = GetNumMatches(winningArr, playerArr);
 
         if (n == 0)
             return 0;
         
-        Console.WriteLine($"n == {n}\n{PowerOf(2, n-1)}");
         return PowerOf(2, n-1);
     }
 
     private int PowerOf(int number, int powerOf)
     {
-        Console.WriteLine($"number == {number} , powerOf == { powerOf}\n");
         int res = 1;
 
         for(int i = 0; i < powerOf; i++)
         {
             res = res *2;
         }
-        Console.WriteLine($"res == {res}\n");
+
         return res;
     }
 
     public int SolvePuzzle(string s)
     {
-        int[] arrOne;
-        int[] arrTwo;
-        Console.WriteLine($"s={s}");
-        SplitLine(in s, out arrOne, out arrTwo);
-        Console.WriteLine("-----");
+        int[] winningNumArr;
+        int[] playerNumArr;
 
-        return WinningScore(arrOne, arrTwo);
+        SplitLine(in s, out winningNumArr, out playerNumArr);
+
+        return WinningScore(winningNumArr, playerNumArr);
     }
 
     public int DoDayFourPartOne()
@@ -79,8 +73,6 @@ public class CardCalculator
             while (line != null)
             {
                 ret += SolvePuzzle(line);
-
-                Console.WriteLine($"ret == {ret}\n");
 
                 line = sr.ReadLine();
             }
