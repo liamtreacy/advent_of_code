@@ -6,32 +6,27 @@ public class CardCalculator
         return -1;
     }
 
+    private int[] GenerateArray(int sizeArr, string[] strArr)
+    {
+        int[] generatedArray = new int[sizeArr];
+        int count = 0;
+
+        foreach(var s in strArr)
+        {
+            generatedArray[count] = int.Parse(s);
+            count++;
+        }
+
+        return generatedArray;
+    }
+
     public void SplitLine(in string input, out int[] winningNos, out int[] playerNos)
     {
         string[] parts = input.Split(new char[] { ':', '|' }, StringSplitOptions.RemoveEmptyEntries);
 
-        winningNos = new int[5];
-        int count = 0;
-
-        // Generate winning array
-        string[] winningParts = parts[1].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries);
-
-        foreach(var c in winningParts)
-        {
-            winningNos[count] = int.Parse(c);
-            count++;
-        }
+        winningNos = GenerateArray(5, parts[1].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries));
 
         
-        playerNos = new int[8];
-        count = 0;
-        // Generate player array
-        string[] playerParts = parts[2].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries);
-
-        foreach(var c in playerParts)
-        {
-            playerNos[count] = int.Parse(c);
-            count++;
-        }
+        playerNos = GenerateArray(8, parts[2].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries));
     }
 }
