@@ -1,7 +1,7 @@
 namespace DayOne_AttemptTwo.Tests;
 
 public class UnitTest1
-{/*
+{
     [Fact]
     public void FindDigitsInString()
     {
@@ -36,7 +36,7 @@ public class UnitTest1
 
         Assert.Equal(expected, ret);
     }
-
+/*
     [Fact]
     public void DoDayOnePartTwo()
     {
@@ -48,5 +48,6 @@ public class UnitTest1
         var ret = sut.DoDayOnePartTwo();
 
         Assert.Equal(expected, ret);
-    }*/
+    }
+    */
 }
