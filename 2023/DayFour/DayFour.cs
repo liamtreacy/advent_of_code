@@ -1,11 +1,6 @@
 ﻿namespace DayFour;
 public class CardCalculator
 {
-    public int DoStuff(string s)
-    {
-        return -1;
-    }
-
     private int[] GenerateArray(int sizeArr, string[] strArr)
     {
         int[] generatedArray = new int[sizeArr];
@@ -52,5 +47,46 @@ public class CardCalculator
         for (int i = 2; i <= powerOf; i++)
             result *= number;
         return result;
+    }
+
+    public int SolvePuzzle(string s)
+    {
+        int[] arrOne;
+        int[] arrTwo;
+        SplitLine(in s, out arrOne, out arrTwo);
+
+        return WinningScore(arrOne, arrTwo);
+    }
+
+    public int DoDayFourPartOne()
+    {
+        string line;
+        int ret = 0;
+
+        try
+        {
+            StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/" + "day_four_input");
+
+            line = sr.ReadLine();
+            while (line != null)
+            {
+                ret += SolvePuzzle(line);
+
+                //Console.WriteLine($"ret == {ret}\n");
+
+                line = sr.ReadLine();
+            }
+            sr.Close();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Executing finally block.");
+        }
+
+        return ret;
     }
 }

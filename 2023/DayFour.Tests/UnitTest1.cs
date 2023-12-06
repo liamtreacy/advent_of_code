@@ -3,18 +3,6 @@ namespace DayFour.Tests;
 public class UnitTest1
 {
     [Fact]
-    public void LineTest()
-    {
-        string input = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53";
-        int expected = 0;
-
-        var sut = new CardCalculator();
-        var ret = sut.DoStuff(input);
-
-        //Assert.Equal(expected, ret);
-    }
-
-    [Fact]
     public void SplitLineTest()
     {
         string input = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53";
@@ -60,5 +48,14 @@ public class UnitTest1
         var ret = sut.WinningScore(winningNos, playerNos);
 
         Assert.Equal(8, ret);
+    }
+
+    [Fact]
+    public void DoDayFourPartOne()
+    {
+        var sut = new CardCalculator();
+        var ret = sut.DoDayFourPartOne();
+
+        Assert.Equal(0, ret);
     }
 }
