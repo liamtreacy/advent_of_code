@@ -29,4 +29,9 @@ public class CardCalculator
         
         playerNos = GenerateArray(8, parts[2].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries));
     }
+
+    public int GetNumMatches(int[] arrOne, int[] arrTwo)
+    {
+        return arrOne.Intersect(arrTwo).Count();
+    }
 }
