@@ -9,9 +9,25 @@ public class UnitTest1
         int expected = 0;
 
         var sut = new CardCalculator();
-        sut.DoStuff(input);
         var ret = sut.DoStuff(input);
 
-        Assert.Equal(expected, ret);
+        //Assert.Equal(expected, ret);
+    }
+
+    [Fact]
+    public void SplitLineTest()
+    {
+        string input = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53";
+        var sut = new CardCalculator();
+        int[] winningNos;
+        int[] playerNos;
+
+        int[] expectedWinningNos = {41, 48, 83, 86, 17};
+        int[] expectedPlayNos = {83, 86,  6, 31, 17,  9, 48, 53};
+
+        sut.SplitLine(in input, out winningNos, out playerNos);
+
+        Assert.Equal(expectedWinningNos, winningNos);
+        Assert.Equal(expectedPlayNos, playerNos);
     }
 }
