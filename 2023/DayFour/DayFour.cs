@@ -42,6 +42,15 @@ public class CardCalculator
         if (n == 0)
             return 0;
         
-        return 2^(n-1);
+        Console.WriteLine($"n == {n}\n");
+        return PowerOf(2, n-1);
+    }
+
+    private int PowerOf(int number, int powerOf)
+    {
+        int result = number;
+        for (int i = 2; i <= powerOf; i++)
+            result *= number;
+        return result;
     }
 }
