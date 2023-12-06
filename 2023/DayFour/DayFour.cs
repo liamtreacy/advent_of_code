@@ -1,9 +1,9 @@
 ﻿namespace DayFour;
 public class CardCalculator
 {
-    private int[] GenerateArray(int sizeArr, string[] strArr)
+    private int[] GenerateArray(string[] strArr)
     {
-        int[] generatedArray = new int[sizeArr];
+        int[] generatedArray = new int[strArr.Length];
         int count = 0;
 
         foreach(var s in strArr)
@@ -19,14 +19,15 @@ public class CardCalculator
     {
         string[] parts = input.Split(new char[] { ':', '|' }, StringSplitOptions.RemoveEmptyEntries);
 
-        winningNos = GenerateArray(5, parts[1].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries));
+        winningNos = GenerateArray(parts[1].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries));
 
         
-        playerNos = GenerateArray(8, parts[2].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries));
+        playerNos = GenerateArray(parts[2].Split(new char[] { ' '}, StringSplitOptions.RemoveEmptyEntries));
     }
 
     public int GetNumMatches(int[] arrOne, int[] arrTwo)
     {
+        Console.WriteLine($"===\narrOne = {arrOne.ToString()}\narrTwo == {arrTwo.ToString()}\n{arrOne.Intersect(arrTwo).Count()}\n");
         return arrOne.Intersect(arrTwo).Count();
     }
 
@@ -37,23 +38,30 @@ public class CardCalculator
         if (n == 0)
             return 0;
         
-        Console.WriteLine($"n == {n}\n");
+        Console.WriteLine($"n == {n}\n{PowerOf(2, n-1)}");
         return PowerOf(2, n-1);
     }
 
     private int PowerOf(int number, int powerOf)
     {
-        int result = number;
-        for (int i = 2; i <= powerOf; i++)
-            result *= number;
-        return result;
+        Console.WriteLine($"number == {number} , powerOf == { powerOf}\n");
+        int res = 1;
+
+        for(int i = 0; i < powerOf; i++)
+        {
+            res = res *2;
+        }
+        Console.WriteLine($"res == {res}\n");
+        return res;
     }
 
     public int SolvePuzzle(string s)
     {
         int[] arrOne;
         int[] arrTwo;
+        Console.WriteLine($"s={s}");
         SplitLine(in s, out arrOne, out arrTwo);
+        Console.WriteLine("-----");
 
         return WinningScore(arrOne, arrTwo);
     }
@@ -72,7 +80,7 @@ public class CardCalculator
             {
                 ret += SolvePuzzle(line);
 
-                //Console.WriteLine($"ret == {ret}\n");
+                Console.WriteLine($"ret == {ret}\n");
 
                 line = sr.ReadLine();
             }
