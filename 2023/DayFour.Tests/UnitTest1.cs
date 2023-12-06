@@ -56,6 +56,6 @@ public class UnitTest1
         var sut = new CardCalculator();
         var ret = sut.DoDayFourPartOne();
 
-        Assert.Equal(0, ret);
+        Assert.Equal(23235, ret);
     }
 }
