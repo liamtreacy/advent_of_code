@@ -14,7 +14,7 @@ public class Round
 public class Game
 {
     public int Id { get; set; }
-    public Round[] Rounds{ get; set;}
+    public List<Round> Rounds{ get; set;}
     public Game(string s)
     {}
     public Game()
@@ -25,6 +25,15 @@ public class Transformer
 {
     public Game GetGame(string s)
     {
+        var ret = new Game();
+        ret.Id = GetGameId(s);
+
+        var roundStrs = GetRoundStrings(s);
+
+        foreach(var v in roundStrs)
+        {
+            //ret.Rounds
+        }
         return null;
     }
 
