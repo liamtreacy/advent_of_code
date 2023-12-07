@@ -3,6 +3,22 @@ namespace DayTwo.Tests;
 public class UnitTest1
 {
     [Fact]
+    public void SplitStringIntoGame()
+    {
+        string s = "Game 21: 1 blue, 2 green, 3 red; 7 red, 8 green";
+
+        var sut = new Transformer();
+
+        var ret = sut.GetGame(s);
+        var expected = new Game{Id = 21, Rounds = new Round[]{
+            new Round{RedCubes = 3, GreenCubes = 2, BlueCubes = 1},
+            new Round{RedCubes = 7, GreenCubes = 8}
+        }};
+
+        Assert.Equal(expected, ret);
+    }
+
+    [Fact]
     public void SplitRoundStringIntoRound()
     {
         string s = " 1 blue, 2 green, 3 red";

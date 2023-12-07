@@ -11,8 +11,23 @@ public class Round
     public int BlueCubes { get; set; } = 0;
 }
 
+public class Game
+{
+    public int Id { get; set; }
+    public Round[] Rounds{ get; set;}
+    public Game(string s)
+    {}
+    public Game()
+    {}
+}
+
 public class Transformer
 {
+    public Game GetGame(string s)
+    {
+        return null;
+    }
+
     public Round ParseStrToRound(string s)
     {
         var parts = s.Split(',');
