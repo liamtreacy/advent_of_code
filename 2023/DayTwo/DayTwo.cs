@@ -47,6 +47,11 @@ public class Game
 
 public class Transformer
 {
+    public List<Game> ConvertStrToGames(string s)
+    {
+        return null;
+    }
+
     public Game GetGame(string s)
     {
         var ret = new Game();
