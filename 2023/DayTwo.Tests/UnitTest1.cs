@@ -3,6 +3,19 @@ namespace DayTwo.Tests;
 public class UnitTest1
 {
     [Fact]
+    public void TestGetSumOfIds()
+    {
+        string s = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\nGame 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\nGame 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red\nGame 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red\nGame 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
+        int expectedSum = 8;
+
+        var sut = new Transformer();
+        var games = sut.ConvertStrToGames(s);
+        var ret = sut.GetSumIdsPossibleGames(games, 12, 13, 14);
+
+       Assert.Equal(expectedSum, ret);
+    }
+
+    [Fact]
     public void TestConvertStrToGames()
     {
         string s = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\nGame 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\nGame 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red\nGame 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red\nGame 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
@@ -29,6 +42,20 @@ public class UnitTest1
         }};
 
         Assert.Equal(expected, ret);
+    }
+
+    [Fact]
+    public void SplitRoundStringIntoRound_TwoDigits()
+    {
+        string s = " 1 blue, 20 green, 3 red";
+        var sut = new Transformer();
+
+        var expected = new Round{RedCubes = 3, GreenCubes = 20, BlueCubes = 1};
+        var ret = sut.ParseStrToRound(s);
+
+        Assert.Equal(expected.RedCubes, ret.RedCubes);
+        Assert.Equal(expected.GreenCubes, ret.GreenCubes);
+        Assert.Equal(expected.BlueCubes, ret.BlueCubes);
     }
 
     [Fact]

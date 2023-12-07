@@ -47,6 +47,35 @@ public class Game
 
 public class Transformer
 {
+    public int GetSumIdsPossibleGames(List<Game> games, int maxRed, int maxGreen, int maxBlue)
+    {
+        int sum = 0;
+        bool addId = true;
+
+        foreach(var game in games)
+        {
+            addId = true;
+
+            foreach(var round in game.Rounds)
+            {
+                Console.WriteLine($"Round = {round.RedCubes}, {round.GreenCubes}, {round.BlueCubes}\nMax =   {maxRed}, {maxGreen}, {maxBlue}");
+                if(round.RedCubes > maxRed || round.GreenCubes > maxGreen || round.BlueCubes > maxBlue)
+                {
+                    addId = false;
+                    break;
+                }
+            }
+
+            if(addId)
+            {
+                Console.WriteLine($"Adding gameId: {game.Id}\n");
+                sum += game.Id;
+            }
+        }
+
+        return sum;
+    }
+
     public List<Game> ConvertStrToGames(string s)
     {
         string[] lines = s.Split('\n');
@@ -74,6 +103,14 @@ public class Transformer
         return ret;
     }
 
+    private int GetIntFomSubstring(string s)
+    {
+        s = s.Trim();
+        var spaceIdx = s.IndexOf(' ');
+
+        return int.Parse(s.Substring(0,spaceIdx));
+    }
+
     public Round ParseStrToRound(string s)
     {
         var parts = s.Split(',');
@@ -83,18 +120,15 @@ public class Transformer
         {
             if(v.Contains("red"))
             {
-                var idx = v.IndexOfAny("0123456789".ToCharArray());
-                ret.RedCubes = v[idx] - '0';
+                ret.RedCubes = GetIntFomSubstring(v);
             }
             else if(v.Contains("green"))
             {
-                var idx = v.IndexOfAny("0123456789".ToCharArray());
-                ret.GreenCubes = v[idx] - '0';
+                ret.GreenCubes= GetIntFomSubstring(v);
             }
             else if(v.Contains("blue"))
             {
-                var idx = v.IndexOfAny("0123456789".ToCharArray());
-                ret.BlueCubes = v[idx] - '0';
+                ret.BlueCubes = GetIntFomSubstring(v);
             }
         }
 
