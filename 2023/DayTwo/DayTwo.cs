@@ -9,16 +9,40 @@ public class Round
     public int RedCubes { get; set; } = 0;
     public int GreenCubes { get; set; } = 0;
     public int BlueCubes { get; set; } = 0;
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        Round other = (Round)obj;
+        return this.RedCubes == other.RedCubes && 
+        this.GreenCubes == other.GreenCubes &&
+        this.BlueCubes == other.BlueCubes;
+    }
 }
 
 public class Game
 {
     public int Id { get; set; }
-    public List<Round> Rounds{ get; set;}
+    public List<Round> Rounds{ get; set;} = new List<Round>();
     public Game(string s)
     {}
     public Game()
     {}
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        Game other = (Game)obj;
+        return this.Id == other.Id && this.Rounds.SequenceEqual(other.Rounds);
+    }
 }
 
 public class Transformer
@@ -32,9 +56,9 @@ public class Transformer
 
         foreach(var v in roundStrs)
         {
-            //ret.Rounds
+            ret.Rounds.Add(ParseStrToRound(v));
         }
-        return null;
+        return ret;
     }
 
     public Round ParseStrToRound(string s)

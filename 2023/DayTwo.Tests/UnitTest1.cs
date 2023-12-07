@@ -10,7 +10,7 @@ public class UnitTest1
         var sut = new Transformer();
 
         var ret = sut.GetGame(s);
-        var expected = new Game{Id = 21, Rounds = new Round[]List<Round>{
+        var expected = new Game{Id = 21, Rounds = new List<Round>{
             new Round{RedCubes = 3, GreenCubes = 2, BlueCubes = 1},
             new Round{RedCubes = 7, GreenCubes = 8}
         }};
