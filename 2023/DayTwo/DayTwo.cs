@@ -1,7 +1,40 @@
 ﻿namespace DayTwo;
 public class Class1
 {
+    public int DoDayTwoPartOne()
+    {
+        var transformer = new Transformer();
+        string line;
+        int ret = 0;
+        var games = new List<Game>();
 
+        try
+        {
+            StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/" + "day_two_input");
+
+            line = sr.ReadLine();
+            while (line != null)
+            {
+                games.Add(transformer.GetGame(line));
+
+                line = sr.ReadLine();
+            }
+            sr.Close();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Executing finally block.");
+        }
+
+        // Get input
+
+
+        return transformer.GetSumIdsPossibleGames(games, 12, 13, 14);
+    }
 }
 
 public class Round
