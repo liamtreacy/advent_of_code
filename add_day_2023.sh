@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DAY=DayFour # replace with the actual day
+DAY=DayTwo # replace with the actual day
 
 
 
