@@ -13,4 +13,16 @@ public class UnitTest1
 
         Assert.Equal(expected, ret);
     }
+
+    [Fact]
+    public void SplitLineIntoGame_Id_TwoDigits()
+    {
+        string s = "Game 27: 2 green, 8 blue, 2 red; 1 blue, 1 red, 5 green; 3 green, 7 blue";
+
+        var sut = new Transformer();
+        var ret = sut.GetGameId(s);
+        var expected = 27;
+
+        Assert.Equal(expected, ret);
+    }
 }
