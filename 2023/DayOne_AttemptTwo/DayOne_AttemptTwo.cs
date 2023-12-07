@@ -1,5 +1,45 @@
 ﻿namespace DayOne_AttemptTwo;
 
+public class Solver
+{
+    public int SolveDayOnePartTwo()
+    {
+        string line;
+        int ret = 0;
+        var calc = new DayOneCalcultor();
+
+        try
+        {
+            StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/" + "input_day_one_part_one.txt");
+
+            line = sr.ReadLine();
+            while (line != null)
+            {
+                var t = calc.GetTwoDigitNumberFromStringWithDigitAndNumberSpelledOut(line);
+
+                Console.Write($"  t == {t}\n");
+
+                ret += t;
+
+                Console.Write($"  sum == {ret}\n\n");
+
+                line = sr.ReadLine();
+            }
+            sr.Close();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Executing finally block.");
+        }
+
+        return ret;
+    }
+}
+
 public class DayOneCalcultor
 {
     private int GetFirstNumberFromDigitIndex(in string s)
@@ -25,7 +65,6 @@ public class DayOneCalcultor
     private (int, int) GetSpelledOutNumsIndexes(string s)
     {
         var letterIndexMap = new Dictionary<string, int>();
-        letterIndexMap["zero"] = -1;
         letterIndexMap["one"] = -1;
         letterIndexMap["two"] = -1;
         letterIndexMap["three"] = -1;
@@ -45,9 +84,46 @@ public class DayOneCalcultor
                                  .ToDictionary(pair => pair.Key,
                                                pair => pair.Value);
 
-        newDictionary.OrderBy(x => x.Value);
+        //newDictionary.OrderByA(x => x.Value);
+        newDictionary = newDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
-        return (newDictionary.FirstOrDefault().Value, newDictionary.LastOrDefault().Value);
+        int firstNumIdx = newDictionary.FirstOrDefault().Value;
+
+        //
+
+        var letterIndexMap2 = new Dictionary<string, int>();
+        letterIndexMap2["one"] = -1;
+        letterIndexMap2["two"] = -1;
+        letterIndexMap2["three"] = -1;
+        letterIndexMap2["four"] = -1;
+        letterIndexMap2["five"] = -1;
+        letterIndexMap2["six"] = -1;
+        letterIndexMap2["seven"] = -1;
+        letterIndexMap2["eight"] = -1;
+        letterIndexMap2["nine"] = -1;
+
+        foreach(var li in letterIndexMap2)
+        {
+            letterIndexMap2[li.Key] = s.LastIndexOf(li.Key);
+        }
+
+        var newDictionary2 = letterIndexMap2.Where(pair => pair.Value >= 0)
+                                 .ToDictionary(pair => pair.Key,
+                                               pair => pair.Value);
+
+        newDictionary2 = newDictionary2.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+
+        //Console.WriteLine("====\n");
+        foreach(var v in newDictionary)
+        {
+            //Console.WriteLine($"{v.Key} , {v.Value}\n\n");
+        }
+        //Console.WriteLine("====\n");
+
+       // return (newDictionary.FirstOrDefault().Value, newDictionary.LastOrDefault().Value);
+
+        int lastNumIdx = newDictionary2.LastOrDefault().Value;
+        return (firstNumIdx, lastNumIdx);
     }
 
 
@@ -71,6 +147,7 @@ public class DayOneCalcultor
             firstNum = ConvertSpelledNumberToStringRepresentation(GetFirstSpelledOutNumber(s)).ToString();
         }
 
+Console.WriteLine($"lastDigitIdx == {lastDigitIdx}\nlastSpelledNumberIdx == {lastSpelledNumberIdx}\n");
         if( lastDigitIdx >= 0 && lastDigitIdx > lastSpelledNumberIdx)
         {
             lastNum = s[GetLastNumberFromDigitIndex(s)].ToString();
@@ -79,6 +156,8 @@ public class DayOneCalcultor
         {
             lastNum = ConvertSpelledNumberToStringRepresentation(GetLastSpelledOutNumber(s)).ToString();
         }
+
+        Console.WriteLine($"s == {s}\nfirstNum == {firstNum}\nlastNum == {lastNum}\n");
 
         if(firstNum == "-1")
             return int.Parse(lastNum);
@@ -94,7 +173,6 @@ public class DayOneCalcultor
     {
         switch(s)
         {
-            case "zero":    return 0;
             case "one":     return 1;
             case "two":     return 2;
             case "three":   return 3;
@@ -111,7 +189,6 @@ public class DayOneCalcultor
     public string GetFirstSpelledOutNumber(string s)
     {
         var letterIndexMap = new Dictionary<string, int>();
-        letterIndexMap["zero"] = -1;
         letterIndexMap["one"] = -1;
         letterIndexMap["two"] = -1;
         letterIndexMap["three"] = -1;
@@ -131,7 +208,7 @@ public class DayOneCalcultor
                                  .ToDictionary(pair => pair.Key,
                                                pair => pair.Value);
 
-        newDictionary.OrderBy(x => x.Value);
+        newDictionary = newDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
         return newDictionary.FirstOrDefault().Key;
     }
@@ -139,7 +216,6 @@ public class DayOneCalcultor
     public string GetLastSpelledOutNumber(string s)
     {
         var letterIndexMap = new Dictionary<string, int>();
-        letterIndexMap["zero"] = -1;
         letterIndexMap["one"] = -1;
         letterIndexMap["two"] = -1;
         letterIndexMap["three"] = -1;
@@ -159,7 +235,7 @@ public class DayOneCalcultor
                                  .ToDictionary(pair => pair.Key,
                                                pair => pair.Value);
 
-        newDictionary.OrderBy(x => x.Value);
+        newDictionary = newDictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
         return newDictionary.LastOrDefault().Key;
     }
@@ -177,37 +253,6 @@ public class DayOneCalcultor
             while (line != null)
             {
                 ret += GetTwoDigitNumberFromString(line);
-
-                line = sr.ReadLine();
-            }
-            sr.Close();
-        }
-        catch(Exception e)
-        {
-            Console.WriteLine("Exception: " + e.Message);
-        }
-        finally
-        {
-            Console.WriteLine("Executing finally block.");
-        }
-
-        return ret;
-    }
-
-
-    public int DoDayOnePartTwo()
-    {
-        string line;
-        int ret = 0;
-
-        try
-        {
-            StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/" + "input_day_one_part_one.txt");
-
-            line = sr.ReadLine();
-            while (line != null)
-            {
-                ret += GetTwoDigitNumberFromStringWithDigitAndNumberSpelledOut(line);
 
                 line = sr.ReadLine();
             }
