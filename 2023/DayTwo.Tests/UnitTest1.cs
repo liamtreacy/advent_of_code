@@ -11,7 +11,7 @@ public class UnitTest1
         var sut = new Transformer();
         var ret = sut.ConvertStrToGames(s);
 
-        Asset.Equal(expectedNumGames, ret.Count);
+        Assert.Equal(expectedNumGames, ret.Count);
     }
 
 

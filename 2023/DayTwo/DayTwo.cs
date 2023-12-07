@@ -49,7 +49,15 @@ public class Transformer
 {
     public List<Game> ConvertStrToGames(string s)
     {
-        return null;
+        string[] lines = s.Split('\n');
+        var games = new List<Game>();
+
+        foreach(var l in lines)
+        {
+            games.Add(GetGame(l));
+        }
+
+        return games;
     }
 
     public Game GetGame(string s)
