@@ -30,10 +30,43 @@ public class Class1
             Console.WriteLine("Executing finally block.");
         }
 
+
+        return transformer.GetSumIdsPossibleGames(games, 12, 13, 14);
+    }
+
+    public int DoDayTwoPartTwo()
+    {
+        var transformer = new Transformer();
+        string line;
+        int ret = 0;
+        var games = new List<Game>();
+
+        try
+        {
+            StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/" + "day_two_input");
+
+            line = sr.ReadLine();
+            while (line != null)
+            {
+                games.Add(transformer.GetGame(line));
+
+                line = sr.ReadLine();
+            }
+            sr.Close();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Executing finally block.");
+        }
+
         // Get input
 
 
-        return transformer.GetSumIdsPossibleGames(games, 12, 13, 14);
+        return transformer.GetPowerOfGames(games);
     }
 }
 
@@ -80,6 +113,38 @@ public class Game
 
 public class Transformer
 {
+    public int GetPowerOfGames(List<Game> games)
+    {
+        int sum = 0;
+
+        foreach(var game in games)
+        {
+            int maxR = 0;
+            int maxG = 0;
+            int maxB = 0;
+            int pow = 1;
+
+            foreach(var round in game.Rounds)
+            {
+                if( round.RedCubes > maxR)
+                    maxR = round.RedCubes;
+                if( round.GreenCubes > maxG)
+                    maxG = round.GreenCubes;
+                if( round.BlueCubes > maxB)
+                    maxB = round.BlueCubes;
+            }
+
+            pow = maxR != 0 ? ( pow * maxR ) : pow;
+            pow = maxG != 0 ? ( pow * maxG ) : pow;
+            pow = maxB != 0 ? ( pow * maxB ) : pow;
+
+            sum += pow;
+        }
+
+
+        return sum;
+    }
+
     public int GetSumIdsPossibleGames(List<Game> games, int maxRed, int maxGreen, int maxBlue)
     {
         int sum = 0;

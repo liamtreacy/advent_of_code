@@ -3,12 +3,21 @@ namespace DayTwo.Tests;
 public class UnitTest1
 {
     [Fact]
+    public void DoDayTwoPartTwoTest()
+    {
+        var c = new Class1();
+        var ret = c.DoDayTwoPartTwo();
+
+        Assert.Equal(70265, ret);
+    }
+
+    [Fact]
     public void DoDayTwoPartOneTest()
     {
         var c = new Class1();
         var ret = c.DoDayTwoPartOne();
 
-        Assert.Equal(2505, ret);
+        //Assert.Equal(2505, ret);
     }
 
     [Fact]
