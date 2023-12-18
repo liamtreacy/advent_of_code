@@ -25,6 +25,11 @@ public class MyStringHelper
 
     public int GetHashForString(string s)
     {
-        return 52;
+        int currValue  = 0;
+        foreach(char c in s)
+        {
+            currValue = GetHashForChar(c, currValue);
+        }
+        return currValue;
     }
 }
