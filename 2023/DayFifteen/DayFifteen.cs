@@ -7,19 +7,24 @@ public class Class1
 
 public class MyStringHelper
 {
-    public int GetAsciiCode(char c)
+    public int GetAsciiCode(char c, int currValue)
     {
-        return (int)c;
+        return currValue + (int)c;
     }
 
-    public int MultiplyAsciiCode(char c)
+    public int MultiplyAsciiCode(char c, int currValue)
     {
-        return 17 * GetAsciiCode(c);
+        return 17 * GetAsciiCode(c, currValue);
     }
 
-    public int GetHashForChar(char c)
+    public int GetHashForChar(char c, int currValue)
     {
-        int t = MultiplyAsciiCode(c);
+        int t = MultiplyAsciiCode(c, currValue);
         return t % 256;
+    }
+
+    public int GetHashForString(string s)
+    {
+        return 52;
     }
 }
