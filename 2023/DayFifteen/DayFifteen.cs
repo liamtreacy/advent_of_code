@@ -11,4 +11,9 @@ public class MyStringHelper
     {
         return (int)c;
     }
+
+    public int MultiplyAsciiCode(char c)
+    {
+        return 17 * GetAsciiCode(c);
+    }
 }
