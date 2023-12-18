@@ -18,4 +18,12 @@ public class UnitTest1
 
         Assert.Equal(1224, sut.MultiplyAsciiCode('H'));
     }
+
+    [Fact]
+    public void Test_GetHashForChar()
+    {
+        var sut = new MyStringHelper();
+
+        Assert.Equal(200, sut.GetHashForChar('H'));
+    }
 }

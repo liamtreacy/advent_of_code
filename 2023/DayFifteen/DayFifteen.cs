@@ -16,4 +16,10 @@ public class MyStringHelper
     {
         return 17 * GetAsciiCode(c);
     }
+
+    public int GetHashForChar(char c)
+    {
+        int t = MultiplyAsciiCode(c);
+        return t % 256;
+    }
 }
