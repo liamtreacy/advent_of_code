@@ -1,7 +1,31 @@
 ﻿namespace DayFifteen;
 public class Class1
 {
+    public int Run()
+    {
+        string line;
+        int ret = 0;
 
+        try
+        {
+            var path = Directory.GetCurrentDirectory() + "/" + "day_15_input";
+            string readText = File.ReadAllText(path);
+
+            var Helper = new MyStringHelper();
+            return Helper.GetHasSumForCommaSeperatedString(readText);
+
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Executing finally block.");
+        }
+
+        return ret;
+    }
 }
 
 

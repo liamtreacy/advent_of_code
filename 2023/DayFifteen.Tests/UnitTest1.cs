@@ -46,4 +46,12 @@ public class UnitTest1
 
         Assert.Equal(1320, sut.GetHasSumForCommaSeperatedString(s));
     }
+
+    [Fact]
+    public void Test_DoDay15PartOne()
+    {
+        var sut = new Class1();
+
+        Assert.Equal(512950, sut.Run());
+    }
 }
