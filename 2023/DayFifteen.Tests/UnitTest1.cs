@@ -37,4 +37,13 @@ public class UnitTest1
 
         Assert.Equal(52, sut.GetHashForString(s));
     }
+
+    [Fact]
+    public void Test_GetHasSumForCommaSeperatedString()
+    {
+        var sut = new MyStringHelper();
+        var s = "rn=1,cm-,qp=3,cm=2,qp-,pc=4,ot=9,ab=5,pc-,pc=6,ot=7";
+
+        Assert.Equal(1320, sut.GetHasSumForCommaSeperatedString(s));
+    }
 }

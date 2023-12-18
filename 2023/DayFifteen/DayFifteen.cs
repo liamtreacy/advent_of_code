@@ -32,4 +32,18 @@ public class MyStringHelper
         }
         return currValue;
     }
+
+    public int GetHasSumForCommaSeperatedString(string s)
+    {
+        string[] words = s.Split(',');
+
+        int currValue = 0;
+
+        foreach(var word in words)
+        {
+            currValue += GetHashForString(word);
+        }
+
+        return currValue;
+    }
 }
