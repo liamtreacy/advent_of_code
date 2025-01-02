@@ -16,7 +16,7 @@ public class InputTests {
         var left = new ArrayList<Integer>(Arrays.asList(3, 4, 2, 1, 3, 3));
         var right = new ArrayList<Integer>(Arrays.asList(4,3,5,3,9,3));
 
-        var totalDistance = DayOneCalculator.calc(left, right);
+        var totalDistance = DayOneCalculator.GetDistance(left, right);
         assertEquals(11, totalDistance);
     }
 }
